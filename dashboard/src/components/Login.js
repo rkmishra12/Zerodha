@@ -44,6 +44,7 @@ function Login() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
+          console.log("redirecting to home");
           navigate("/home");
         }, 1000);
       } else {
