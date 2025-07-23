@@ -34,7 +34,7 @@ function Login() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/login",
+        "https://zerodhaclone-noqh.onrender.com/login",
         { ...inputValue },
         {
           withCredentials: true,

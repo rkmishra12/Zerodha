@@ -18,7 +18,7 @@ const WatchList = () => {
   const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/watchlist").then((res) => {
+    axios.get("https://zerodhaclone-noqh.onrender.com/watchlist").then((res) => {
       setWatchlist(res.data);
     });
   }, []);

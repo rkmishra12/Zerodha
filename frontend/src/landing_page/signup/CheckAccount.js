@@ -17,7 +17,7 @@ function CheckAccount() {
     }
     try {
       const  {data}  = await axios.post(
-        "http://localhost:8080/checkaccount",
+        "https://zerodhaclone-noqh.onrender.com/checkaccount",
         { email },
         { withCredentials: true }
       );

@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
 
       try {
         const { data } = await axios.post(
-          "http://localhost:8080/",
+          "https://zerodhaclone-noqh.onrender.com/",
           {},
           { withCredentials: true }
         );
