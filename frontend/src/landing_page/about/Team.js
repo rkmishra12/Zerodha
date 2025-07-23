@@ -11,7 +11,7 @@ function Team() {
       <div className="row p-5 text-muted fs-6  ">
         <div className="col p-5 text-center">
           <img
-            src="media/images/CEO4.jpg"
+            src="media/images/ceo4.jpg"
             style={{ width: "75%", borderRadius: "100%" }}
           ></img>
           <h4 className="mt-3">r k &nbsp; M i s h r a</h4>
