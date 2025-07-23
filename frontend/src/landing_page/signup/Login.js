@@ -29,7 +29,7 @@ function Login() {
                   Welcome aboard, and happy investing!
                 </small>
               </p>
-              <a href="http://localhost:3001/" className="btn btn-primary btn-sm mt-2 fw-bold" ><span className="d-flex justify-content-center align-items-center"><img src="media/images/kiteLogo.svg" style={{width:"22%"}} className="mt-1"/>Login to kite</span></a>
+              <a href="https://zerodhadashboard-self.vercel.app/" className="btn btn-primary btn-sm mt-2 fw-bold" ><span className="d-flex justify-content-center align-items-center"><img src="media/images/kiteLogo.svg" style={{width:"22%"}} className="mt-1"/>Login to kite</span></a>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 
-const allowedOrigins = ["https://zerodhahome-chi.vercel.app", "http://localhost:3000"];
+const allowedOrigins = ["https://zerodhahome-chi.vercel.app", "https://zerodhadashboard-self.vercel.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
