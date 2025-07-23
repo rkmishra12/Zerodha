@@ -15,7 +15,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Login />} />
           <Route
-            path="/home"
+            path="/*"
             element={
               <ProtectedRoute>
                 <Home />

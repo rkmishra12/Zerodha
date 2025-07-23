@@ -44,7 +44,7 @@ function Login() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/home");
+          return navigate("/dashboard");
         }, 1000);
       } else {
         handleError(message);
