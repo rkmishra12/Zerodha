@@ -42,7 +42,7 @@ function Login() {
       );
       const { success, message } = data;
       if (success) {
-        handleSuccess(message);
+        handleSuccess("Login");
         setTimeout(() => {
           console.log("redirecting to home");
           navigate("/home");
