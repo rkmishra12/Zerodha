@@ -31,7 +31,7 @@ function Stats() {
           </p>
         </div>
         <div className="col-6 p-4">
-          <img src="media/images/ecoSystem.png" style={{ width: "100%" }}></img>
+          <img src="media/images/ecosystem.png" style={{ width: "100%" }}></img>
           <div className="text-center">
             <a href="" className="mx-5" style={{ textDecoration: "none" }}>
               Explore our products
