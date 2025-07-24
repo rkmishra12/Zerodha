@@ -35,6 +35,17 @@ app.use(cors({
   credentials: true,
 }));
 
+// 🔥 ADD THIS TO HANDLE OPTIONS PRE-FLIGHT REQUESTS -- chat gpt
+app.options("*", cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 app.get("/allholdings", async (req, res) => {
   let allHoldings = await HoldingModel.find({});
