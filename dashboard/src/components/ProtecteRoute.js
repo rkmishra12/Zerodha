@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verifyUser = async () => {
       if (!cookies.token) {
-        return navigate("/dashboard");
+        return navigate("/");
       }
 
       try {
@@ -22,13 +22,13 @@ const ProtectedRoute = ({ children }) => {
         );
 
         if (!data.status) {
-          navigate("/dashboard");
+          navigate("/");
         }
 
         setIsLoading(false);
       } catch (error) {
         console.error("Verification failed:", error);
-        navigate("/dashboard");
+        navigate("/");
       }
     };
 
