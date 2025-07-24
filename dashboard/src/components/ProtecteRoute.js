@@ -11,24 +11,24 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verifyUser = async () => {
       if (!cookies.token) {
-        return navigate("/");
+        return navigate("/dashboard");
       }
 
       try {
         const { data } = await axios.post(
-          "https://zerodhaclone-noqh.onrender.com/",
+          "https://zerodhaclone-noqh.onrender.com",
           {},
           { withCredentials: true }
         );
 
         if (!data.status) {
-          navigate("/");
+          navigate("/dashboard");
         }
 
         setIsLoading(false);
       } catch (error) {
         console.error("Verification failed:", error);
-        navigate("/");
+        navigate("/dashboard");
       }
     };
 
