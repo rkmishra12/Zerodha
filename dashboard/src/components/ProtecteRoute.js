@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }) => {
     const verifyUser = async () => {
       if (!cookies.token) {
         console.log("!cookies.token");
-        console.log(cookies);
+        console.log(cookies.token);
         return navigate("/");
       }
 
