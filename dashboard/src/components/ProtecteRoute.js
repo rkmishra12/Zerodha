@@ -12,6 +12,8 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verifyUser = async () => {
       if (!cookies.token) {
+        console.log("!cookies.token");
+        console.log(cookies.token);
         return navigate("/");
       }
 
@@ -23,6 +25,8 @@ const ProtectedRoute = ({ children }) => {
         );
 
         if (!data.status) {
+          console.log("!data.status");
+          console.log(data.status);
           navigate("/");
         }
 
