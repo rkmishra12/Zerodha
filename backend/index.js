@@ -92,6 +92,8 @@ app.post("/signup", async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      secure: true,
+      sameSite: "None", 
     });
     res
       .status(201)
