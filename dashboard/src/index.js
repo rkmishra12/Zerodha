@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Kite from "./components/Kite";
 import ProtectedRoute from "./components/ProtecteRoute";
 import { CookiesProvider } from "react-cookie";
 
