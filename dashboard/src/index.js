@@ -16,14 +16,6 @@ root.render(
         <Routes>
           <Route path="/" element={<Login />} />
           <Route
-            path="/kite"
-            element={
-              <ProtectedRoute>
-                <Kite />
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/*"
             element={
               <ProtectedRoute>
