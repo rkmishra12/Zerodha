@@ -10,6 +10,7 @@ const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(cookies);
     const verifyUser = async () => {
       if (!cookies.token) {
         console.log("!cookies.token");

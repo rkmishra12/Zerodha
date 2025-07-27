@@ -41,8 +41,7 @@ function Login() {
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
-        navigate("/dashboard");
-        window.location.reload();
+         window.location.href = "/dashboard";
       } else {
         handleError(message);
       }
