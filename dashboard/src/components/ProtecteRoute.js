@@ -9,7 +9,9 @@ const ProtectedRoute = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  console.log("use effect");
   useEffect(() => {
+    console.log("Cookies");
     console.log(cookies);
     const verifyUser = async () => {
       if (!cookies.token) {
@@ -26,8 +28,6 @@ const ProtectedRoute = ({ children }) => {
         );
 
         if (!data.status) {
-          console.log("!data.status");
-          console.log(data.status);
           navigate("/");
         }
 
