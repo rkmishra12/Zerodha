@@ -90,8 +90,9 @@ app.post("/signup", async (req, res, next) => {
     const user = UserModel.create({ email, username, password, createdAt });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
     });
     res
       .status(201)
@@ -105,21 +106,22 @@ app.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.json({ message: "All fields are required to fill" });
+      return res.json({ message: "All fields are required to fill" });
     }
     const user = await UserModel.findOne({ email });
     if (!user) {
-      res.json({ message: "Incorrect email or password" });
+      return res.json({ message: "Incorrect email or password" });
     }
     const auth = await bcrypt.compare(password, user.password);
     if (!auth) {
-      res.json({ message: "Incorrect email or password" });
+      return res.json({ message: "Incorrect email or password" });
     }
+    const isPrdouction = process.env.NODE_ENV === "production";
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: true, 
-      sameSite: "None", 
+      httpOnly: false,
+      secure: isPrdouction,
+      sameSite: isPrdouction ? "None": "lax" ,
     });
     console.log("Cookies Generated in /login");
     res
