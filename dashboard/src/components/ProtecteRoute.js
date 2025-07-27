@@ -12,11 +12,13 @@ const ProtectedRoute = ({ children }) => {
   console.log("use effect");
   useEffect(() => {
     console.log("Cookies");
-    console.log(cookies);
     const verifyUser = async () => {
       if (!cookies.token) {
+        console.log(cookies);
         console.log("!cookies.token");
         console.log(cookies.token);
+        console.log(cookies);
+        console.log("Undefined");
         return navigate("/");
       }
 

@@ -117,9 +117,10 @@ app.post("/login", async (req, res, next) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-        httpOnly : false,
-        withCredentials : true,
+      httpOnly: false,
+      withCredentials: true,
     });
+    console.log("Cookies Generated in /login");
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });
@@ -131,17 +132,23 @@ app.post("/login", async (req, res, next) => {
 
 app.post("/", (req, res) => {
   const token = req.cookies.token;
+  console.log("Cookies in req body:");
+  console.log(req.cookies);
+  console.log(token);
   if (!token) {
+    console.log("false in 139");
     return res.json({ status: false });
   }
   jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
+      console.log("false in 145");
       return res.json({ status: false });
     } else {
       const user = await UserModel.findById(data.id);
       if (user) {
         return res.json({ status: true, user: user.username });
       } else {
+        console.log("false in 151");
         return res.json({ status: false });
       }
     }
