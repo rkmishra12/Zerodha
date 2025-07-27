@@ -9,17 +9,12 @@ const ProtectedRoute = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  console.log("use effect");
   useEffect(() => {
-    console.log("Cookies");
     const verifyUser = async () => {
       if (!cookies.token) {
-        console.log(cookies);
         console.log("!cookies.token");
         console.log(cookies.token);
-        console.log(cookies);
-        console.log("Undefined");
-        console.log("is its the problem");
+     
         return navigate("/");
       }
 
