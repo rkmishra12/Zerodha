@@ -117,9 +117,8 @@ app.post("/login", async (req, res, next) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: true, 
-      sameSite: "None", 
+        httpOnly : false,
+        withCredentials : true,
     });
     res
       .status(201)
