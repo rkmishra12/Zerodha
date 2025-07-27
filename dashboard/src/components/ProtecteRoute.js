@@ -19,6 +19,7 @@ const ProtectedRoute = ({ children }) => {
         console.log(cookies.token);
         console.log(cookies);
         console.log("Undefined");
+        console.log("is its the problem");
         return navigate("/");
       }
 
