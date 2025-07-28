@@ -122,7 +122,6 @@ app.post("/login", async (req, res, next) => {
       httpOnly: false,
       secure: isPrdouction,
       sameSite: isPrdouction ? "None": "lax" ,
-       maxAge: 24 * 60 * 60 * 1000, 
     });
     console.log("Cookies Generated in /login");
     res
