@@ -17,7 +17,6 @@ const ProtectedRoute = ({ children }) => {
      
         return navigate("/");
       }
-
       try {
         const { data } = await axios.post(
           "https://zerodhaclone-noqh.onrender.com/",
