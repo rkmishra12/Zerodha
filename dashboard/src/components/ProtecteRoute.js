@@ -5,15 +5,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
+  const [cookies] = useCookies(["token"]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const verifyUser = async () => {
-      if (!token) {
+      if (!cookies.token) {
         console.log("!cookies.token");
-        console.log(token);
+        console.log(cookies.token);
+     
         return navigate("/");
       }
       try {
@@ -35,7 +36,7 @@ const ProtectedRoute = ({ children }) => {
     };
 
     verifyUser();
-  }, [token, navigate]);
+  }, [cookies, navigate]);
 
   if (isLoading) {
     return (

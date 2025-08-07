@@ -3,8 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { LocalStorage } = require('node-localstorage');
-const localStorage = new LocalStorage('./scratch');
 
 const { HoldingModel } = require("./model/HoldingModel");
 const PositionModel = require("./model/PositionModel");
@@ -91,7 +89,11 @@ app.post("/signup", async (req, res, next) => {
     }
     const user = UserModel.create({ email, username, password, createdAt });
     const token = createSecretToken(user._id);
-    localStorage.setItem("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
     res
       .status(201)
       .json({ message: "User successfully signed in", success: true, user });
@@ -116,7 +118,12 @@ app.post("/login", async (req, res, next) => {
     }
     const isPrdouction = process.env.NODE_ENV === "production";
     const token = createSecretToken(user._id);
-    localStorage.setItem("token", token);
+    res.cookie("token", token, {
+      httpOnly: false,
+      secure: isPrdouction,
+      sameSite: isPrdouction ? "None": "lax" ,
+    });
+    console.log("Cookies Generated in /login");
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });
