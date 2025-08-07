@@ -89,11 +89,7 @@ app.post("/signup", async (req, res, next) => {
     }
     const user = UserModel.create({ email, username, password, createdAt });
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-    });
+    localStorage.setItem("token", token);
     res
       .status(201)
       .json({ message: "User successfully signed in", success: true, user });
@@ -118,12 +114,7 @@ app.post("/login", async (req, res, next) => {
     }
     const isPrdouction = process.env.NODE_ENV === "production";
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      httpOnly: false,
-      secure: isPrdouction,
-      sameSite: isPrdouction ? "None": "lax" ,
-    });
-    console.log("Cookies Generated in /login");
+    localStorage.setItem("token", token);
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });
