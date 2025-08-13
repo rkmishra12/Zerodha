@@ -12,6 +12,7 @@ function Signup() {
     username: "",
     password: "",
   });
+  const [loading , setLoading] = useState(false);
   const {username, password } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +33,7 @@ function Signup() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await axios.post(
         "https://zerodhaclone-noqh.onrender.com/signup",
@@ -51,6 +53,8 @@ function Signup() {
       }
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoading(false);
     }
     setInputValue({
       email: "",
@@ -93,11 +97,22 @@ function Signup() {
             onChange={handleOnChange}
             style={{ width: "30%" }}
           />
-          <button
+           <button
             className="btn btn-primary btn-sm fs-5 mb-3 mt-4"
             type="submit"
+            disabled={loading}
           >
-            Signup now
+            {loading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  aria-hidden="true"
+                ></span>
+                <span role="status">  Loading...</span>
+              </>
+            ) : (
+              "Sign up now"
+            )}
           </button>
         </form>
         <ToastContainer />

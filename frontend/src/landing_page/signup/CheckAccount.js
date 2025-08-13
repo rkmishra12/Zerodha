@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function CheckAccount() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = (e) => {
     setEmail(e.target.value);
@@ -15,26 +16,29 @@ function CheckAccount() {
       toast.error("Please Enter your email address.");
       return;
     }
+    setLoading(true);
     try {
-      const  {data}  = await axios.post(
+      const { data } = await axios.post(
         "https://zerodhaclone-noqh.onrender.com/checkaccount",
         { email },
         { withCredentials: true }
       );
-      if(data.exists){
+      if (data.exists) {
         toast.success("Account found! Redirecting to Login page...");
-        setTimeout(()=>{
-            navigate("/login");
-        },1000);
-      }else{
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
         toast.info("Account does not exists! Redirecting to Signup page...");
-        setTimeout(()=>{
-            navigate("/signup",{state:{email}});
-        },1000);
+        setTimeout(() => {
+          navigate("/signup", { state: { email } });
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
       toast.error("Network error or server not responding.");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -69,8 +73,19 @@ function CheckAccount() {
               <button
                 className="btn btn-primary btn-sm fs-5 mb-3 mt-4"
                 type="submit"
+                disabled={loading}
               >
-                Check email
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-grow spinner-grow-sm"
+                      aria-hidden="true" >
+                    </span>
+                    <span role="status">Loading...</span>
+                  </>
+                ) : (
+                  "check email"
+                )}
               </button>
             </form>
             <ToastContainer />
