@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Universe() {
   return (
@@ -24,7 +25,7 @@ function Universe() {
         <div className="col p-5 mt-1">
           <img
             src="media/images/sensibullLogo.svg"
-            style={{ width: "90%"}}
+            style={{ width: "90%" }}
           ></img>
           <p className="text-muted px-5 mt-4">
             Options trading platform that lets you create strategies, analyze
@@ -56,19 +57,24 @@ function Universe() {
           </p>
         </div>
         <div className="col px-5 mt-2">
-          <img src="media/images/goldenpiLogo.png" style={{width:"67%"}}></img>
+          <img
+            src="media/images/goldenpiLogo.png"
+            style={{ width: "67%" }}
+          ></img>
           <p className="text-muted px-5 mt-4">
             Thematic investing platform that helps you invest in diversified
             baskets of stocks on ETFs.
           </p>
         </div>
       </div>
-         <button
+      <Link to="/checkaccount">
+        <button
           className="btn btn-primary fs-5 mb-5 mt-5"
           style={{ width: "20%", margin: "0 auto" }}
         >
           Sign up for free
         </button>
+      </Link>
     </div>
   );
 }

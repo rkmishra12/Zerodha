@@ -78,7 +78,7 @@ function CheckAccount() {
                 {loading ? (
                   <>
                     <span
-                      className="spinner-grow spinner-grow-sm"
+                      className="spinner-border spinner-border-sm"
                       aria-hidden="true" >
                     </span>
                     <span role="status">Loading...</span>
