@@ -3,8 +3,10 @@ import "./Login.css";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -29,31 +31,32 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://zerodhaclone-noqh.onrender.com/login",
-        { ...inputValue },
-        {
-          withCredentials: true,
-        }
-      );
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-         window.location.href = "/dashboard";
-      } else {
-        handleError(message);
-      }
-    } catch (err) {
-      console.log(err);
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(
+      "https://zerodhaclone-noqh.onrender.com/login",
+      { ...inputValue },
+      { withCredentials: true }
+    );
+    const { success, message, token } = data;
+
+    if (success) {
+      handleSuccess(message);
+      // ✅ Store token in localStorage
+      localStorage.setItem("authToken", token);
+      navigate("/dashboard");
+    } else {
+      handleError(message);
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
-  };
+  } catch (err) {
+    console.log(err);
+  }
+  setInputValue({
+    ...inputValue,
+    email: "",
+    password: "",
+  });
+};
 
   return (
     <div className="loginContainer">

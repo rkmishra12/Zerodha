@@ -1,27 +1,28 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ProtectedRoute = ({ children }) => {
-  const [cookies] = useCookies(["token"]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const verifyUser = async () => {
-      if (!cookies.token) {
-        console.log("!cookies.token");
-        console.log(cookies.token);
-     
+      const token = localStorage.getItem("authToken");
+
+      if (!token) {
+        console.log("No token in localStorage");
         return navigate("/");
       }
+
       try {
         const { data } = await axios.post(
           "https://zerodhaclone-noqh.onrender.com/",
           {},
-          { withCredentials: true }
+          {
+            headers: { Authorization: `Bearer ${token}` }, // ✅ send token
+          }
         );
 
         if (!data.status) {
@@ -36,7 +37,7 @@ const ProtectedRoute = ({ children }) => {
     };
 
     verifyUser();
-  }, [cookies, navigate]);
+  }, [navigate]);
 
   if (isLoading) {
     return (
@@ -66,7 +67,7 @@ const ProtectedRoute = ({ children }) => {
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
-    ); 
+    );
   }
 
   return children;
