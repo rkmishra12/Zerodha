@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
   const { email, password } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -96,7 +96,7 @@ function Login() {
               onChange={handleOnChange}
             />
           </div>
-          <button class="btn loginBtn mt-4" type="button" disabled={loading}>
+          <button className=" btn loginBtn mt-4" type="submit" disabled={loading}>
             {loading ? (
               <>
                 <span
