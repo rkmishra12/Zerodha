@@ -96,14 +96,20 @@ function Login() {
               onChange={handleOnChange}
             />
           </div>
-          <button class="btn loginBtn mt-4" type="button" disabled>
-            <span
-              class="spinner-border spinner-border-sm"
-              aria-hidden="true"
-            ></span>
-            <span class="visually-hidden" role="status">
-              Login
-            </span>
+          <button class="btn loginBtn mt-4" type="button" disabled={loading}>
+            {loading ? (
+              <>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden" role="status">
+                  Logging in
+                </span>
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
         <p className="fs-6 text-muted mt-3">Forgot username and password?</p>
