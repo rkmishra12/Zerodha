@@ -11,6 +11,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const { email, password } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -31,32 +32,35 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const { data } = await axios.post(
-      "https://zerodhaclone-noqh.onrender.com/login",
-      { ...inputValue },
-      { withCredentials: true }
-    );
-    const { success, message, token } = data;
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const { data } = await axios.post(
+        "https://zerodhaclone-noqh.onrender.com/login",
+        { ...inputValue },
+        { withCredentials: true }
+      );
+      const { success, message, token } = data;
 
-    if (success) {
-      handleSuccess(message);
-      // ✅ Store token in localStorage
-      localStorage.setItem("authToken", token);
-      navigate("/dashboard");
-    } else {
-      handleError(message);
+      if (success) {
+        handleSuccess(message);
+        // ✅ Store token in localStorage
+        localStorage.setItem("authToken", token);
+        navigate("/dashboard");
+      } else {
+        handleError(message);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.log(err);
-  }
-  setInputValue({
-    ...inputValue,
-    email: "",
-    password: "",
-  });
-};
+    setInputValue({
+      ...inputValue,
+      email: "",
+      password: "",
+    });
+  };
 
   return (
     <div className="loginContainer">
@@ -92,8 +96,14 @@ function Login() {
               onChange={handleOnChange}
             />
           </div>
-          <button className=" btn loginBtn mt-4" type="submit">
-            Login
+          <button class="btn loginBtn mt-4" type="button" disabled>
+            <span
+              class="spinner-border spinner-border-sm"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden" role="status">
+              Login
+            </span>
           </button>
         </form>
         <p className="fs-6 text-muted mt-3">Forgot username and password?</p>
