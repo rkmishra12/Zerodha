@@ -17,6 +17,10 @@ code {
   margin-left: 30px;
 }
 
+.nav-item:hover{
+  color: #387ed1;
+}
+
 .charges-p-desc{
     font-size: 0.8rem;
 }
