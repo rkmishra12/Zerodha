@@ -23,8 +23,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = [
-  "https://zerodhahome-chi.vercel.app",
-  "https://zerodhadashboard-self.vercel.app",
+  "https://rkmishra-zerodha.vercel.app",
+  "https://rkmishra-zerodhadashboard.vercel.app",
 ];
 
 app.use(
@@ -119,7 +119,7 @@ app.post("/login", async (req, res, next) => {
     const token = createSecretToken(user._id);
     res
       .status(201)
-      .json({ message: "User logged in successfully", success: true ,token});
+      .json({ message: "User logged in successfully", success: true, token });
     next();
   } catch (error) {
     console.error(error);
@@ -148,10 +148,8 @@ app.post("/", (req, res) => {
   });
 });
 
-
 app.listen(PORT, () => {
   console.log("app Is listining on port 8080 ");
   mongoose.connect(uri);
   console.log("DB Connected");
 });
-
