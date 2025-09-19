@@ -13,12 +13,14 @@ function Login() {
               src="media/images/person-CM-DzsTK.svg"
               className="img-fluid rounded-start mt-4 p-2"
               alt="..."
-              style={{width:"74%"}}
+              style={{ width: "74%" }}
             />
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title fs-3 mb-4">Your Zerodha account is active 🎉</h5>
+              <h5 className="card-title fs-3 mb-4">
+                Your Zerodha account is active 🎉
+              </h5>
               <p className="card-text fs-6 text-muted mb-4">
                 To get started, log in to Zerodha Kite using your User ID and
                 password. You can refer to your registered email ID for more
@@ -29,7 +31,19 @@ function Login() {
                   Welcome aboard, and happy investing!
                 </small>
               </p>
-              <a href="https://zerodhadashboard-self.vercel.app/" className="btn btn-primary btn-sm mt-2 fw-bold gotoKiteBtn" ><span className="d-flex justify-content-center align-items-center"><img src="media/images/kiteLogo.svg" style={{width:"22%"}} className="mt-1"/>Login to kite</span></a>
+              <a
+                href="https://rkmishra-zerodhadashboard.vercel.app/"
+                className="btn btn-primary btn-sm mt-2 fw-bold gotoKiteBtn"
+              >
+                <span className="d-flex justify-content-center align-items-center">
+                  <img
+                    src="media/images/kiteLogo.svg"
+                    style={{ width: "22%" }}
+                    className="mt-1"
+                  />
+                  Login to kite
+                </span>
+              </a>
             </div>
           </div>
         </div>
